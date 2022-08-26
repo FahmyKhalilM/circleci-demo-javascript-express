@@ -1,11 +1,19 @@
 version: 2.1
-
+print_pipeline_id:
+    parameters:
+      to:
+        default: "world"
+        type: string
+    steps:
+      - run: echo "Hello <<parameters.to>>"
 jobs:
   save_hello_world_output:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - run: echo "hello world" > ~/output.txt
+      - greeting:
+          to: "$CIRCLE_WORKFLOW_ID"
+      - run: echo   "hello world" > ~/output.txt
       - persist_to_workspace:
           root: ~/
           paths:
