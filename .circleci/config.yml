@@ -1,11 +1,12 @@
 version: 2.1
-print_pipeline_id:
-    parameters:
-      to:
-        default: "world"
-        type: string
-    steps:
-      - run: echo "Hello <<parameters.to>>"
+commands:
+  print_pipeline_id:
+      parameters:
+        to:
+          default: "world"
+          type: string
+      steps:
+        - run: echo "Hello <<parameters.to>>"
 jobs:
   save_hello_world_output:
     docker:
